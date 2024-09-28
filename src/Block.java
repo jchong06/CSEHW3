@@ -32,7 +32,8 @@ public class Block {
         public void printLocal() {
             if (variables.isEmpty()) {
                 System.out.println("No local variables to print.");
-            } else {
+            }
+            else {
                 System.out.println("Variable Name Initial Value");
                 for (Variable variable : variables) {
                     System.out.println(variable.getName() + "             " + variable.getInitialValue());

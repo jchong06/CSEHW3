@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -64,7 +63,8 @@ public class BlockTracer {
     private void print(String line) {
         if (line.contains("LOCAL")) {
             stack.peek().printLocal();
-        } else {
+        }
+        else {
             int startIndex = line.indexOf(" ");
             int endIndex = line.lastIndexOf("*");
             String variableName = line.substring(startIndex, endIndex);
