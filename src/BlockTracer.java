@@ -30,9 +30,19 @@ public class BlockTracer {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine().trim();
-
             if (line.startsWith("{")) {
                 stack.push(new Block());
+                if (line.length() > 1){
+                    if (line.contains("int ")) {
+                        addVariablesToBlock(line);
+                    }
+                    if (line.contains("/*$print")) {
+                        print(line);
+                    }
+                    if (line.startsWith("}")) {
+                        stack.pop();
+                    }
+                }
             } else if (line.startsWith("}")) {
                 stack.pop();
             } else if (line.contains("/*$print")) {
