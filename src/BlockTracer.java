@@ -1,11 +1,10 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.Stack;
+import java.util.*;
 
 public class BlockTracer {
-    private static Stack<Block> stack;
+    private Stack<Block> stack;
 
     public BlockTracer() {
         stack = new Stack<>();
@@ -36,7 +35,7 @@ public class BlockTracer {
                 stack.push(new Block());
             } else if (line.startsWith("}")) {
                 stack.pop();
-            } else if (line.startsWith("/*$print")) {
+            } else if (line.contains("/*$print")) {
                 print(line);
             } else if (line.contains("int ")) {
                 addVariablesToBlock(line);
@@ -79,7 +78,7 @@ public class BlockTracer {
             Block currentBlock = stack.get(i);
             if (currentBlock.hasVariable(variableName)) {
                 System.out.println("Variable Name Initial Value");
-                System.out.println(variableName + "             " + currentBlock.getVariableInitialValue(variableName));
+                System.out.println(variableName + String.join("", Collections.nCopies((14 - variableName.length())," ")) + currentBlock.getVariableInitialValue(variableName));
                 found = true;
                 break;
             }

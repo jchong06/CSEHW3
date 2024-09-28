@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Block {
         public ArrayList<Variable> variables;
@@ -36,7 +37,7 @@ public class Block {
             else {
                 System.out.println("Variable Name Initial Value");
                 for (Variable variable : variables) {
-                    System.out.println(variable.getName() + "             " + variable.getInitialValue());
+                    System.out.println(variable.getName() + String.join("", Collections.nCopies((14 - variable.getName().length())," ")) + variable.getInitialValue());
                 }
             }
         }
