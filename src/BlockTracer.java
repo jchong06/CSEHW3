@@ -76,25 +76,24 @@ public class BlockTracer {
         else {
             int startIndex = line.indexOf(" ");
             int endIndex = line.lastIndexOf("*");
-            String variableName = line.substring(startIndex, endIndex);
+            String variableName = line.substring(startIndex, endIndex).trim();
             printVariable(variableName);
         }
     }
 
     private void printVariable(String variableName) {
         variableName = variableName.replace(" ", "");
-        boolean found = false;
+        boolean check = false;
         for (int i = stack.size() - 1; i >= 0; i--) {
-            Block currentBlock = stack.get(i);
-            if (currentBlock.hasVariable(variableName)) {
+            if (stack.get(i).hasVariable(variableName)) {
                 System.out.println("Variable Name Initial Value");
-                System.out.println(variableName + String.join("", Collections.nCopies((14 - variableName.length())," ")) + currentBlock.getVariableInitialValue(variableName));
-                found = true;
+                System.out.println(variableName + String.join("", Collections.nCopies((14 - variableName.length())," ")) + stack.get(i).getVariableInitialValue(variableName));
+                check = true;
                 break;
             }
         }
 
-        if (!found) {
+        if (!check) {
             System.out.println("Variable not found: " + variableName);
         }
     }
